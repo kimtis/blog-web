@@ -3,6 +3,14 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
+
+  const [healthy, setHealthy] = React.useState("READY");
+  React.useEffect(() => {
+    fetch("http://3.35.51.163:8080/api/-/healthy")
+      .then(resp => resp.text())
+      .then(resp => setHealthy(resp));
+  }, [])
+
   return (
     <div className="App">
       <header className="App-header">
@@ -16,7 +24,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          Learn React, {healthy}
         </a>
       </header>
     </div>
